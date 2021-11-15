@@ -20,11 +20,16 @@ h1 {
 .city-form {
     background-color: #b6d094;
     color: #6a2e35;
+    border-color: #6a2e35;
 }
 /*city search history*/
 a {
     color: #e1aa7d;
     background-color: #6a2e35;
+}
+
+.card {
+    border-color: #6a2e35;
 }
 
 /*container that holds weather of the day/uv index*/
