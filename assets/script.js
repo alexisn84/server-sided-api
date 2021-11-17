@@ -127,28 +127,25 @@ var showWeather = function() {
 
         var UVurl = "https://api.openweathermap.org/data/2.5/uvi?&lat=" + lat + "&lon=" + lon + "&appid=" + APIkey;
         
-        var UVresult = $.ajax({
-            url: UVurl,
-            method: "GET"
-        }).then(function(response){
-            // console.log("UV call: ")
-            // console.log(response);
-            UVindex.text(response.value);            
-        });
+        $.ajax({
+           url: UVurl,
+           method: "GET"
+            }).then(function (response) {
+           var Uvindex = parseInt(response.value);
+           var Uvspan = $(".uvSpot");
 
-        //colorcode uv index
-        var UVindex = UVresult.value;
-        var UVspan = $("uvSpot");
+           Uvspan.text("UV index: " + response.value);
 
-        if (UVindex > 0 && UVIndex <= 2.99) {
-            UVspan.addClass("low");
-        }
-        else if (UVindex >= 3 && UVindex <= 5.99) {
-            UVspan.addClass("moderate");
-        }
-        else {UVspan.addClass("high");
-        }
-        
+           if (Uvindex > 0 && Uvindex <= 2.99) {
+               Uvspan.addClass("low");
+           } 
+            else if (Uvindex >= 3 && Uvindex <= 5.99) {
+               Uvspan.addClass("moderate");
+           } 
+            else {
+               Uvspan.addClass("high");
+           }
+});
 
         //get 5 day forecast
         var countryCode = response.sys.country;
@@ -156,7 +153,7 @@ var showWeather = function() {
 
 
     });
-};
+}
 
 //function to call the 5 fday and display
 

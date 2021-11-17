@@ -36,23 +36,27 @@ h1 {
 
 /*container that holds weather of the day/uv index*/
 /*index color coded styles*/
+.five h3 {
+    color: #b6d094;
+    font-weight: 700;
+}
 .low{
     border-radius: 6px;
     background-color: green;
     padding: 5px;
-    color: white;
+    color: #e1aa7d;
 }
 
 .moderate{
     border-radius: 6px;
     background-color: yellow;
     padding: 5px;
-    color: black;
+    color: #6a2e35;
 }
 
 .high{
     border-radius: 6px;
-    background-color: orange;
+    background-color: red;
     padding: 5px;
-    color: black;
+    color: #e1aa7d;
 }
