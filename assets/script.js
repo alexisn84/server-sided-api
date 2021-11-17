@@ -96,10 +96,10 @@ $("#citySearch").on("click", function(event) {
     storeCityArray();
     showCity();
     showWeather();
-    //displayFiveDayForecast();
+    //getFiveDay();
 });
 
-//function to run api aja call and display current city, weather and 5 day forecaset to the dom, dont forget uv index
+//function to run api aja call and display current city, weather and  dont forget uv index
 var showWeather = function() {
     //url for ajax api call
     var queryURL = "https://api.openweathermap.org/data/2.5/weather?q=" + cityname + "&units=imperial&appid=" + APIkey;
@@ -145,17 +145,65 @@ var showWeather = function() {
             else {
                Uvspan.addClass("high");
            }
-});
-
-        //get 5 day forecast
-        var countryCode = response.sys.country;
-        var forecastURL = "https://api.openweathermap.org/data/2.5/forecast?&units=imperial&appid=" + APIkey + "&lat=" + lat +  "&lon=" + lon;
-
-
     });
+
+    //5 day forecast and display
+    // var countryCode = response.sys.country;
+    var forecastURL = "https://api.openweathermap.org/data/2.5/forecast?&units=imperial&appid=" + APIkey + "&lat=" + lat +  "&lon=" + lon;
+
+    var fiveCol = $("<div class='col-12 col-md-6 col-lg forecast-day mb-m'>");
+    var fiveCard = $("<div class='card'>");
+    var fiveCardBody = $("<div class='card-body'>");
+    var fiveDate = $("<h5 class='card-title'>");
+    var fiveIcons = $("<img>");
+    var fiveTemp = $("p class='card-text mb-0'>");
+    var fiveHumidity = $("p< class='card-text mb-0'>");
+
+    $.ajax({
+        url: forecastURL,
+        method: "GET"
+    }) .then(function(response) {
+        console.log(response);
+        $('#fiveDayForecast').empty();
+        
+        //for loop
+        for (var i = 1; i < response.list.length; i+=8) {
+            var forecastData = moment(response.list[i].dt_text).format("L");
+            console.log(forecastData);
+
+            //build card 
+            $('#fiveDayForecast').append(fiveCol);
+            fiveCol.append(fiveCard);
+            fiveCard.append(fiveCardBody);
+
+            //add sections to card for 5 day forecast
+            fiveCardBody.append(fiveDate);
+            fiveCardBody.append(fiveIcons);
+            fiveCardBody.append(fiveTemp);
+            fiveCardBody.append(fiveHumidity);
+
+            fiveIcons.attr("src", "https://openweathermap.org/img/w/" + response.list[i].weather[0].icon + ".png");
+            fiveIcons.attr("alt", response.list[i].weather[0].main)
+            fiveDate.text(forecastData);
+            fiveTemp.text(response.list[i].main.temp);
+            fiveTemp.prepend("Temp: ");
+            fiveTemp.append("$deg;F");
+            fiveHumidity.text(response.list[i].main.humidity);
+            fiveHumidity.prepend("Humidity: ");
+            fiveHumidity.append("%");
+
+            console.log(response.list[i].dt_txt);
+            console.log(response.list[i].main.temp);
+            console.log(response.list[i].main.humidity);
+        }
+        });
+});
 }
 
 //function to call the 5 fday and display
+// var getFiveDay = function () 
+
+
 
 // funtion to make history list
 
