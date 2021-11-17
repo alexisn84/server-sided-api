@@ -145,25 +145,16 @@ var showWeather = function() {
             else {
                Uvspan.addClass("high");
            }
-    });
 
     //5 day forecast and display
     // var countryCode = response.sys.country;
-    var forecastURL = "https://api.openweathermap.org/data/2.5/forecast?&units=imperial&appid=" + APIkey + "&lat=" + lat +  "&lon=" + lon;
-
-    var fiveCol = $("<div class='col-12 col-md-6 col-lg forecast-day mb-m'>");
-    var fiveCard = $("<div class='card'>");
-    var fiveCardBody = $("<div class='card-body'>");
-    var fiveDate = $("<h5 class='card-title'>");
-    var fiveIcons = $("<img>");
-    var fiveTemp = $("p class='card-text mb-0'>");
-    var fiveHumidity = $("p< class='card-text mb-0'>");
-
+    var forecastURL = "https://api.openweathermap.org/data/2.5/forecast?q="+cityname+"&units=imperial&appid=116ba6c8059f9b9fbbd135332921be2e";
+    
     $.ajax({
         url: forecastURL,
         method: "GET"
-    }) .then(function(response) {
-        console.log(response);
+    }) .then((response) => {
+        console.log("this is data from url request: ", response);
         $('#fiveDayForecast').empty();
         
         //for loop
@@ -197,6 +188,18 @@ var showWeather = function() {
             console.log(response.list[i].main.humidity);
         }
         });
+    });
+
+    //console.log(forecastURL);
+
+    var fiveCol = $("<div class='col-12 col-md-6 col-lg forecast-day mb-m'>");
+    var fiveCard = $("<div class='card'>");
+    var fiveCardBody = $("<div class='card-body'>");
+    var fiveDate = $("<h5 class='card-title'>");
+    var fiveIcons = $("<img>");
+    var fiveTemp = $("p class='card-text mb-0'>");
+    var fiveHumidity = $("p< class='card-text mb-0'>");
+
 });
 }
 
