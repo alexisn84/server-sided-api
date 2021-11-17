@@ -162,6 +162,14 @@ var showWeather = function() {
             var forecastData = moment(response.list[i].dt_text).format("L");
             console.log(forecastData);
 
+            var fiveCol = $("<div class='col-12 col-md-6 col-lg forecast-day mb-m'>");
+            var fiveCard = $("<div class='card'>");
+            var fiveCardBody = $("<div class='card-body'>");
+            var fiveDate = $("<h5 class='card-title'>");
+            var fiveIcons = $("<img>");
+            var fiveTemp = $("p class='card-text mb-0'>");
+            var fiveHumidity = $("p< class='card-text mb-0'>");
+
             //build card 
             $('#fiveDayForecast').append(fiveCol);
             fiveCol.append(fiveCard);
@@ -192,21 +200,10 @@ var showWeather = function() {
 
     //console.log(forecastURL);
 
-    var fiveCol = $("<div class='col-12 col-md-6 col-lg forecast-day mb-m'>");
-    var fiveCard = $("<div class='card'>");
-    var fiveCardBody = $("<div class='card-body'>");
-    var fiveDate = $("<h5 class='card-title'>");
-    var fiveIcons = $("<img>");
-    var fiveTemp = $("p class='card-text mb-0'>");
-    var fiveHumidity = $("p< class='card-text mb-0'>");
+    
 
 });
 }
-
-//function to call the 5 fday and display
-// var getFiveDay = function () 
-
-
 
 // funtion to make history list
 
