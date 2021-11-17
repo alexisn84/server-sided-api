@@ -1,3 +1,4 @@
+
 /*header styles*/
 .hero {
     background-color: #6a2e35;
@@ -23,10 +24,11 @@ h1 {
     border-color: #6a2e35;
 }
 /*city search history*/
-a {
+
+/* .cityList a {
     color: #e1aa7d;
     background-color: #6a2e35;
-}
+} didnt work */
 
 .card {
     border-color: #6a2e35;
@@ -34,7 +36,7 @@ a {
 
 /*container that holds weather of the day/uv index*/
 /*index color coded styles*/
-.favorable{
+.low{
     border-radius: 6px;
     background-color: green;
     padding: 5px;
@@ -48,7 +50,7 @@ a {
     color: black;
 }
 
-.severe{
+.high{
     border-radius: 6px;
     background-color: orange;
     padding: 5px;

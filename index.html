@@ -14,53 +14,71 @@
     <link href="https://fonts.googleapis.com/css?family=Open+Sans&display=swap" rel="stylesheet"/>
     <!--css style sheet-->
     <link rel="stylesheet" href="./assets/style.css"/>
+    <script src="https://cdn.jsdelivr.net/npm/moment@2.24.0/moment.min.js"></script>
 </head>
 
-<!--start main portion of page-->
+<!--start body portion of page-->
 <body>
-    <!--header-->
-    <div class="hero">
-    <header>
-        <h1 class="title text-center"><i class="fas fa-cloud-moon"></i>Weather Now!</h1>
-    </header>
-    </div>
-
-    <!--main section-->
-    <main class="container-fluid">
-        <div class="row">
+    <!-- <div class="container-fluid"> -->
+        <!--header-->
+        <div class="col-12 hero">
+        <header>
+            <h1 class="title text-center"><i class="fas fa-cloud-moon"></i>Weather Now!</h1>
+        </header>
+        </div>
+    <!-- </div> -->
+    
+        <!--main container-->
+        <div class="container-fluid">
             <!--container to hold city search and history-->
-            <div class="col-4 side-bar">
-                <!--add form and button-->
-                <h3>Search For:</h3>
-                <div class="input-group mb-3">
-                    <input type="text" id="cityInput" class="city-form" placeholder="City Name">
-                    <div class="input-group-append">
-                        <button class="btn btn-outline" type="button" id="citySearch">
-                            <img src="./assets/images/radar.jpg" width="30px"/>
-                        </button>
-                    </div>
-                </div>
+            <div class="row">
+                <div class="col-3 side-bar">
+                    <!--add form and button-->
+                    <h3>Search For:</h3>
+                    <div class="input-group mb-3">
+                        <input type="text" id="cityInput" class="city-form" placeholder="City Name">
+                        <div class="input-group-append">
+                            <button class="btn btn-outline" type="button" id="citySearch">
+                                <img src="./assets/images/radar.jpg" width="30px"/>
+                            </button>
+                        </div>
+                    </div>                    
 
                 <!-- add a place for history of searches can be listed-->
-                <div>
                     <!-- <h2 class="subtitle">Previous searches: <span id="city-search-term"></span></h2> -->
-                    <div id="cityList" class="list-group"></div>
-                </div>
+                    <div id="cityList" class="list-group" style="color: #e1aa7d; background-color: 6a2e35;"></div>
+                </div>            
 
-                <!--add container to diplay weather and 5 day forecast-->
-                <div class="col-8">
-                    <div class="card" style="width: 100%;" id="weatherForecast"></div>
-                    <div id="fiveDayForecast"></div>
+
+        <!--add container to diplay weather and 5 day forecast-->
+        <div id="weather-container" class="col-9 hide">
+            <div class="card" style="width: 100%; background-color: #6a2e35; color: #e1aa7d;">
+                <div class="weather-forecast border-rounded">
+                <h2 id="searched-city"> <small style="color: #e1aa7d;" id="todaysDate"></small></h2>
+
+                    <p class="mb-0">Temperature: <span id="current-temp"></span></p>
+                    <p class="mb-0">Humidity: <span id="current-humidity"></span></p>
+                    <p class="mb-0">Wind Speed: <span id="current-wind-speed"></span></p>
+                    <p class="uvSpot">UV index: <span id="uv-index"></span></p>
+                </div>
+            </div>
+            
+
+        <div id="fiveDayForecasat" class="row">
+            <div class="col-12">
+                <h3>5-Day Forecast</h3>
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">Date</h5>
+                        <i class="fa fa-sun"></i>
+                        <p class="card-text">Temp: </p>
+                        <p class="card-text">Humidity: </p>
+                    </div>
                 </div>
             </div>
         </div>
+        </div>
     
-
-    </main>
-    
-
-
-    <!--bootstrap js links-->
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
     
