@@ -162,13 +162,12 @@ var showWeather = function() {
         $('#fiveDayForecast').empty();
         
         //for loop
-        for (var i = 1; i < 6; i++) {
+        for (var i = 1; i < response.list.length; i+=8) {
             response.list[i]
             console.log (response.list[i]);
             var forecastData = moment(response.list[i].dt_txt).format("L");
-            //forecastData.textContent = `${response.list[i].clouds.dt_text}`;
-            //fiveDate.appendChild(forecastData);
             console.log(response.list[i].dt_txt)
+            console.log(forecastData);
 
             var fiveCol = document.createElement("div");
             fiveCol.setAttribute("class", "col-12 col-md-6 col-lg forecast-day mb-m");
@@ -184,7 +183,8 @@ var showWeather = function() {
             //get date
             var fiveDate = document.createElement("h5");
             fiveDate.setAttribute("class", "card-title");
-            // fiveDate.textContent = `${response.list[i].dt_txt}`;
+            fiveDate.textContent = `${response.list[i].dt_txt}`;
+            
             fiveCol.append(fiveDate);
 
             //get icon
