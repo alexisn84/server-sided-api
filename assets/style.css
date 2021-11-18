@@ -25,9 +25,9 @@ h1 {
 }
 /*city search history*/
 
-/* .cityList a {
-    color: #e1aa7d;
-    background-color: #6a2e35;
+/* .cityList a:hover {
+    color: #6a2e35;
+    background-color: #b6d094;
 } didnt work */
 
 .card {
