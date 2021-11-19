@@ -15,7 +15,8 @@ h1 {
 .side-bar {
     background-color: #e1aa7d;
     color: #6A2E35;
-    height: 100vh;
+    padding-bottom: 15px;
+    /* height: 100vh; */
 }
 
 .city-form {
@@ -32,6 +33,7 @@ h1 {
 
 .card {
     border-color: #6a2e35;
+    margin-top: 10px;
 }
 
 /*container that holds weather of the day/uv index*/
@@ -39,6 +41,7 @@ h1 {
 .five h3 {
     color: #b6d094;
     font-weight: 700;
+    margin-top: 10px;
 }
 .low{
     border-radius: 6px;

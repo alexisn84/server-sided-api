@@ -68,6 +68,9 @@ var storedWeather = function() {
     }
 }
 
+//reload call
+pullCityList();
+
 //function to save city (maybe as an array) into local storage
 var storeCityArray = function() {
     localStorage.setItem("cities", JSON.stringify(cityList));
