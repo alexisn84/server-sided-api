@@ -1,6 +1,5 @@
 //global variables
 var cityList = [];
-var cityname;
 
 //global mainly used to make connection to api one weather
 var currentCity = $("#searched-city");
@@ -59,14 +58,13 @@ var pullCityList = function() {
 }
 
 //pulls city into local storage and reloads
-var showWeather = function() {
+var storedWeather = function() {
     var storedCity = JSON.parse(localStorage.getItem("currentCity"));
 
     if (storedCity !== null) {
         cityname = storedCity;
 
-        displayWeather();
-        displayFiveDayForecast();
+        showWeather();
     }
 }
 
@@ -100,7 +98,7 @@ $("#citySearch").on("click", function(event) {
     storeCityArray();
     showCity();
     showWeather();
-    //getFiveDay();
+    
 });
 
 //function to run api aja call and display current city, weather and  dont forget uv index
@@ -117,7 +115,7 @@ var showWeather = function() {
         console.log(response);
 
         currentCity.text(response.name);
-        currentCity.append("<small class='text-muted' id='todaysDate'>");
+        currentCity.append("<small id='todaysDate'>");
         $("#todaysDate").text("(" + currentDate + ")");
         currentCity.append("<img src='https://openweathermap.org/img/w/" + response.weather[0].icon + ".png' alt='" + response.weather[0].main + "' />" )
         currentTemp.text(response.main.temp);
@@ -165,12 +163,13 @@ var showWeather = function() {
         for (var i = 1; i < response.list.length; i+=8) {
             response.list[i]
             console.log (response.list[i]);
-            var forecastData = moment(response.list[i].dt_txt).format("L");
-            console.log(response.list[i].dt_txt)
-            console.log(forecastData);
+            //var forecastData = moment(response.list[i].dt_txt).format("L");
+            //console.log(response.list[i].dt_txt)
+            //console.log(forecastData);
 
             var fiveCol = document.createElement("div");
             fiveCol.setAttribute("class", "col-12 col-md-6 col-lg forecast-day mb-m");
+            
 
             var fiveCard = document.createElement("div");
             fiveCard.setAttribute("class", "card");
@@ -178,58 +177,55 @@ var showWeather = function() {
 
             var fiveCardBody = document.createElement("div");
             fiveCardBody.setAttribute("class", "card-body");
-            fiveCol.append(fiveCardBody);
+            fiveCardBody.style.color = "#e1aa7d";
+            fiveCardBody.style.backgroundColor = "#6a2e35";
+            fiveCard.append(fiveCardBody);
 
             //get date
             var fiveDate = document.createElement("h5");
             fiveDate.setAttribute("class", "card-title");
-            fiveDate.textContent = `${response.list[i].dt_txt}`;
-            
-            fiveCol.append(fiveDate);
+            fiveDate.textContent = moment(`${response.list[i].dt_txt}`).format("L"); 
+            // fiveDate.style.color = "#6a2e35";
+            // fiveDate.style.backgroundColor = "#e1aa7d";
+            fiveCardBody.append(fiveDate);
 
             //get icon
             var fiveIcons =document.createElement("img");
             fiveIcons.setAttribute("src", "https://openweathermap.org/img/w/" + response.list[i].weather[0].icon + ".png");
             fiveIcons.setAttribute("alt", response.list[i].weather[0].main);
-            fiveCol.append(fiveIcons);
+            fiveCardBody.append(fiveIcons);
 
             //get temp
             var fiveTemp = document.createElement("p");
             fiveTemp.setAttribute("class", "card-text mb-0");
             fiveTemp.textContent = `Temp: ${response.list[i].main.temp} F`;
-            fiveTemp.style.color = "#e1aa7d";
-            fiveTemp.style.backgroundColor = "#6a2e35";
-            fiveCol.append(fiveTemp);
+            fiveCardBody.append(fiveTemp);
 
             //get humidity
             var fiveHumidity = document.createElement("p");
             fiveHumidity.setAttribute("class", "card-text mb-0");
             fiveHumidity.textContent = `Humidity: ${response.list[i].main.humidity}%`;
-            fiveHumidity.style.color = "#6a2e35";
-            fiveHumidity.style.backgroundColor = "#e1aa7d";
-            fiveCol.append(fiveHumidity);
+            fiveCardBody.append(fiveHumidity);
 
             //get wind speed
             var fiveWind = document.createElement("p");
             fiveWind.setAttribute("class", "card-text mb-0");
             fiveWind.textContent = `Wind Speed: ${response.list[i].wind.speed} mph`;
-            fiveWind.style.color = "#e1aa7d";
-            fiveWind.style.backgroundColor = "#6a2e35";
-            fiveCol.append(fiveWind);
+            fiveCardBody.append(fiveWind);
             
             fiveDayContainer.append(fiveCol);
         }
         });
     });
-
     //console.log(forecastURL);
-
-    
-
 });
 }
 
 // funtion to make history list
+var searchHistory = function() {
+    cityname = $(this).attr("data-name");
+    showWeather();
+}
 
 //check if enter key hit instead of click
 $("#cityInput").keypress(function(event) {
@@ -238,8 +234,5 @@ $("#cityInput").keypress(function(event) {
     }
 })
 
-// local storage functions
-// pullCityList();
-// showWeather();
-
-
+//click searched city to re-show weather current and 5 day forecast
+$(document).on("click", ".city", searchHistory);
