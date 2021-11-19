@@ -12,7 +12,11 @@ https://alexisn84.github.io/server-sided-api/
 https://github.com/alexisn84/server-sided-api
 
 ## Images
-<!-- <img src="https://github.com/alexisn84/" alt="view of city with 5 day forecast"/> -->
+<img src="https://github.com/alexisn84/server-sided-api/blob/main/assets/images/Homepage.jpg" alt="view of homepage, no entries"/>
+<img src="https://github.com/alexisn84/server-sided-api/blob/main/assets/images/Entered%20City.jpg" alt="view of city with 5 day forecast"/>
+<img src="https://github.com/alexisn84/server-sided-api/blob/main/assets/images/multicity.uvchange.jpg" alt="multicity search history"/>
+<img src="https://github.com/alexisn84/server-sided-api/blob/main/assets/images/Reload%20View.png" alt="reload view show history search"/>
+<img src="https://github.com/alexisn84/server-sided-api/blob/main/assets/images/smallscreenview.png" alt="small screen view"/>
 
 
 ## Contributors
